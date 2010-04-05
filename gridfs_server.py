@@ -10,8 +10,8 @@ from operator import itemgetter
 DB_NAME = 'test'
 COLLECTION_PREFIX = 'fs'
 CONNECTION = pymongo.Connection() # add host and port if needed
-SERVER = bottle.FapwsServer # see bottle.py for possible servers
-DEBUG = True # don't print exceptions in http output
+SERVER = bottle.AutoServer # see bottle.py for possible servers
+DEBUG = False # don't print exceptions in http output
 
 db = CONNECTION[DB_NAME]
 fs = GridFS(db, COLLECTION_PREFIX)
