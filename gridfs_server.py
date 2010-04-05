@@ -3,7 +3,7 @@ import bottle
 import pymongo
 from gridfs import GridFS
 from gridfs.errors import NoFile
-from mimetypes import guess_type
+import mimetypes
 from itertools import imap
 from operator import itemgetter
 
@@ -24,7 +24,7 @@ def serve_file(filename):
     except NoFile:
         return bottle.HTTPError(404, "Not found:" + filename)
 
-    content_type = file.content_type or guess_type(filename)[0]
+    content_type = file.content_type or mimetypes.guess_type(filename)[0]
     headers = {'Content-Type': content_type,
                'Content-Length': file.length,
                'Last-Modified': file.upload_date.strftime("%a, %d %b %Y "
